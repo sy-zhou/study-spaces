@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Biology 1",
+    "code": "B1"
+  },
+  {
+    "name": "Biology 2",
+    "code": "B2"
+  },
+  {
+    "name": "William G. Davis Computer Research Centre",
+    "code": "DC"
+  },
+  {
+    "name": "Douglas Wright Engineering Building",
+    "code": "DWE",
+    "rooms": ["1350", "1351"]
+  },
+  {
+    "name": "Mathematics 3",
+    "code": "M3",
+    "rooms": ["1006"]
+  },
+  {
+    "name": "Mathematics & Computer Building",
+    "code": "MC",
+    "rooms": ["2017", "2038"]
+  },
+  {
+    "name": "Physics",
+    "code": "PHY"
+  },
+  {
+    "name": "Mike & Ophelia Lazaridis Quantum-Nano Centre",
+    "code": "QNC"
+  },
+  {
+    "name": "J.R. Coutts Engineering Lecture Hall",
+    "code": "RCH",
+    "rooms": ["306", "307"]
+  },
+  {
+    "name": "Science Teaching Complex",
+    "code": "STC",
+    "rooms": ["0010", "0020", "0030", "0040", "0050", "0060", "1012"]
+  }
+]
