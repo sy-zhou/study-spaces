@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const buildings = require('../database/buildings.json');
+const API_KEY = require('../api_key.json');
 
 const getData = url => {
   return fetch(url)
@@ -21,7 +22,7 @@ module.exports = function(app, db) {
     if (!b) res.status(404).send('dne');
     const r = b.rooms.find(r => r === req.params.room);
     // fetch data from uwaterloo api
-    let courses = await getData(`http://api.uwaterloo.ca/v2/buildings/${b.code}/${r}/courses.json?key=36e4c705ba766146812bed548893b233`);
+    let courses = await getData(`http://api.uwaterloo.ca/v2/buildings/${b.code}/${r}/courses.json?key=${API_KEY}`);
     courses = courses.map(course => {
       return {
         weekdays: course.weekdays,

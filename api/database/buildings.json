@@ -9,12 +9,12 @@
   },
   {
     "name": "William G. Davis Computer Research Centre",
-    "code": "DC"
+    "code": "DC",
+    "rooms": ["1350", "1351"]
   },
   {
     "name": "Douglas Wright Engineering Building",
-    "code": "DWE",
-    "rooms": ["1350", "1351"]
+    "code": "DWE"
   },
   {
     "name": "Mathematics 3",
