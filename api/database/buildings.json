@@ -1,11 +1,17 @@
 [
   {
     "name": "Biology 1",
-    "code": "B1"
+    "code": "B1",
+    "rooms": ["271"]
   },
   {
     "name": "Biology 2",
-    "code": "B2"
+    "code": "B2",
+    "rooms": ["149", "150", "151"]
+  },
+  {
+    "name": "B.C. Matthews Hall",
+    "code": "BMH"
   },
   {
     "name": "William G. Davis Computer Research Centre",
@@ -14,7 +20,28 @@
   },
   {
     "name": "Douglas Wright Engineering Building",
-    "code": "DWE"
+    "code": "DWE",
+    "rooms": ["2402", "2527", "2529", "2533", "2535"]
+  },
+  {
+    "name": "Engineering 2",
+    "code": "E2"
+  },
+  {
+    "name": "Engineering 3",
+    "code": "E3"
+  },
+  {
+    "name": "Engineering 5",
+    "code": "E5"
+  },
+  {
+    "name": "Engineering 6",
+    "code": "E6"
+  },
+  {
+    "name": "Engineering 7",
+    "code": "E7"
   },
   {
     "name": "Mathematics 3",
@@ -32,7 +59,8 @@
   },
   {
     "name": "Mike & Ophelia Lazaridis Quantum-Nano Centre",
-    "code": "QNC"
+    "code": "QNC",
+    "rooms": ["2501", "2502"]
   },
   {
     "name": "J.R. Coutts Engineering Lecture Hall",

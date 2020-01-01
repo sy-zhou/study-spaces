@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Table from 'react-bootstrap/Table';
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -10,13 +9,11 @@ import "@fullcalendar/timegrid/main.css";
 import './Timetable.css';
 
 export default class Timetable extends Component {
+  calendarComponentRef = React.createRef();
+
   state = {
     times: [],
-    events: [
-      // initial event data
-      { title: "Event Now", start: new Date() },
-      { start: new Date('2019-12-30 11:30'), end: new Date('2019-12-30 15:30') }
-    ]
+    events: []
   };
 
   render() {
@@ -50,8 +47,12 @@ export default class Timetable extends Component {
         } */}
         <div>
           <FullCalendar
+            ref={this.calendarComponentRef}
             defaultView="timeGridWeek"
-            height={"parent"}
+            visibleRange={{
+              start: '2020-06-01',
+              end: '2020-06-05'
+            }}
             header={{
               left: "",
               right: "timeGridWeek,timeGridDay,listWeek"
@@ -70,46 +71,47 @@ export default class Timetable extends Component {
     );
   }
 
-  isTenMinutesApart(endTime, startTime) {
-    const milliseconds = ((new Date("2017-05-02T" + startTime)) - (new Date("2017-05-02T" + endTime)));
-    return (milliseconds / (60000)) == 10;
-  }
-
   formatTimesOnWeekday(weekday) {
     // deep copy times to temp
     let temp = this.state.times.filter(time => time.weekdays.match(new RegExp(weekday)))
       .sort((a,b) => (a.start_time > b.start_time) ? 1 : ((b.start_time > a.start_time) ? -1 : 0))
       .reduce((a, b) => { if (a.length == 0 || a[a.length - 1].start_time != b.start_time) a.push(b); return a; }, [])
       .map(a => Object.assign({}, a));
-    if (temp === undefined || temp.length == 0) return [];
-    let final = [temp[0]];
-    for (let i = 1; i < temp.length; ++i) {
-      if (this.isTenMinutesApart(final[final.length - 1].end_time, temp[i].start_time)) {
-        final[final.length - 1].end_time = temp[i].end_time;
-      } else {
-        final.push(temp[i]);
-      }
-    }
-    // this.state.events = temp.map(a => {
-    //   return ({
-    //     title: "e",
-    //     start: new Date('2019-12-30 ' + a.start),
-    //     end: new Date('2019-12-30 ' + a.end),
-    //   });
-    // })
-    // .map(a => Object.assign({}, a));
-    return final.map(time => <div>{time.start_time} - {time.end_time}</div> )
+    
+    let day = "01";
+    if (weekday == "T(?!h)") day = "02";
+    if (weekday == "W") day = "03";
+    if (weekday == "Th") day = "04";
+    if (weekday == "F") day = "05";
+
+    return temp.map(a => {
+      return ({
+        start: new Date("2020-06-" + day + " " + a.start_time),
+        end: new Date("2020-06-" + day + " " + a.end_time),
+      });
+    })
   }
   
-  callAPI() {
-    const { building, room } = this.props;
-    fetch(`http://localhost:8000/api/building/${building}/${room}/courses`)
-    .then(res => res.json())
-    .then(res => this.setState({ times: res }))
-    .catch(err => err);
+  formatTimes() {
+    let temp = [];
+    temp = temp.concat(this.formatTimesOnWeekday("M"));
+    temp = temp.concat(this.formatTimesOnWeekday("T(?!h)"));
+    temp = temp.concat(this.formatTimesOnWeekday("W"));
+    temp = temp.concat(this.formatTimesOnWeekday("Th"));
+    temp = temp.concat(this.formatTimesOnWeekday("F"));
+    this.setState({ events: temp });
   }
+
   componentDidMount() {
-    this.callAPI();
+    const { building, room } = this.props;
+    // call API
+    fetch(`http://localhost:8000/api/building/${building}/${room}/courses`)
+      .then(res => res.json())
+      .then(res => this.setState({ times: res }, () => this.formatTimes()))
+      .catch(err => err);
+    // display calender
+    let calendarApi = this.calendarComponentRef.current.getApi();
+    calendarApi.gotoDate("2020-06-01");
   }
 
 }
