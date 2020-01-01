@@ -16,36 +16,6 @@ class App extends Component {
     };
   }
 
-  callAPI() {
-    fetch("http://localhost:8000/api/buildings")
-    .then(res => res.json())
-    .then(res => this.setState({ buildings: res }))
-    .catch(err => err);
-  }
-  componentDidMount() {
-    this.callAPI();
-  }
-
-  refreshRooms = building => {
-    let { state } = this;
-    state.rooms = state.buildings.find(b => b.code === building).rooms;
-  }
-
-  selectBuilding = e => {
-    this.setState({ showTimeTable: false });
-    this.setState({ building: e.target.value });
-    this.refreshRooms(e.target.value);
-  }
-
-  selectRoom = e => {
-    this.setState({ showTimeTable: false });
-    this.setState({ room: e.target.value });
-  }
-
-  showTimes = () => {
-    this.setState({ showTimeTable: true });
-  }
-
   render() {
     return (
       <div className="App">
@@ -83,6 +53,36 @@ class App extends Component {
         }
       </div>
     );
+  }
+
+  callAPI() {
+    fetch("http://localhost:8000/api/buildings")
+    .then(res => res.json())
+    .then(res => this.setState({ buildings: res }))
+    .catch(err => err);
+  }
+  componentDidMount() {
+    this.callAPI();
+  }
+
+  refreshRooms = building => {
+    let { state } = this;
+    state.rooms = state.buildings.find(b => b.code === building).rooms;
+  }
+
+  selectBuilding = e => {
+    this.setState({ showTimeTable: false });
+    this.setState({ building: e.target.value });
+    this.refreshRooms(e.target.value);
+  }
+
+  selectRoom = e => {
+    this.setState({ showTimeTable: false });
+    this.setState({ room: e.target.value });
+  }
+
+  showTimes = () => {
+    this.setState({ showTimeTable: true });
   }
 }
 
