@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Calendar from './Calendar';
+import Calendar from '../Calendar/Calendar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import './Search.css';

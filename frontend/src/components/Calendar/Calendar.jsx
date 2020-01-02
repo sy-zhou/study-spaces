@@ -35,7 +35,7 @@ export default class Calendar extends Component {
           events={this.state.events}
           // titleFormat={{ year: 'numeric', month: '2-digit', day: '2-digit' }}
           columnHeaderFormat={{weekday: 'long'}}
-          minTime={"7:00:00"}
+          minTime={"6:00:00"}
           scrollTime={"8:00:00"}
           allDaySlot={false}
         />

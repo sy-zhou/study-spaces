@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Search from './Search';
-import Nearby from './Nearby';
+import Search from '../Search/Search';
+import Nearby from '../Nearby/Nearby';
 import './App.css';
 
 class App extends Component {
