@@ -6,9 +6,9 @@ import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 
-import './Timetable.css';
+import './Calendar.css';
 
-export default class Timetable extends Component {
+export default class Calendar extends Component {
   calendarComponentRef = React.createRef();
 
   state = {
@@ -18,55 +18,27 @@ export default class Timetable extends Component {
 
   render() {
     return (
-      <div className="timetable">
-        {/* <Table>
-          <thead>
-            <tr>
-              <th>Monday</th>
-              <th>Tuesday</th>
-              <th>Wednesday</th>
-              <th>Thursday</th>
-              <th>Friday</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{ this.formatTimesOnWeekday("M") }</td>
-              <td>{ this.formatTimesOnWeekday("T(?!h)") }</td>
-              <td>{ this.formatTimesOnWeekday("W") }</td>
-              <td>{ this.formatTimesOnWeekday("Th") }</td>
-              <td>{ this.formatTimesOnWeekday("F") }</td>
-            </tr>
-          </tbody>
-        </Table>
-        {
-          this.state.times.map(time => {
-            return (<div>{time.weekdays} {time.start_time} {time.end_time} </div>);
-
-          })
-        } */}
-        <div>
-          <FullCalendar
-            ref={this.calendarComponentRef}
-            defaultView="timeGridWeek"
-            visibleRange={{
-              start: '2020-06-01',
-              end: '2020-06-05'
-            }}
-            header={{
-              left: "",
-              right: "timeGridWeek,timeGridDay,listWeek"
-            }}
-            plugins={[dayGridPlugin, timeGridPlugin]}
-            weekends={false}
-            events={this.state.events}
-            // titleFormat={{ year: 'numeric', month: '2-digit', day: '2-digit' }}
-            columnHeaderFormat={{weekday: 'long'}}
-            minTime={"7:00:00"}
-            scrollTime={"8:00:00"}
-            allDaySlot={false}
-          />
-        </div>
+      <div className="calendar">
+        <FullCalendar
+          ref={this.calendarComponentRef}
+          defaultView="timeGridWeek"
+          visibleRange={{
+            start: '2020-06-01',
+            end: '2020-06-05'
+          }}
+          header={{
+            left: "",
+            right: "timeGridWeek,timeGridDay,listWeek"
+          }}
+          plugins={[dayGridPlugin, timeGridPlugin]}
+          weekends={false}
+          events={this.state.events}
+          // titleFormat={{ year: 'numeric', month: '2-digit', day: '2-digit' }}
+          columnHeaderFormat={{weekday: 'long'}}
+          minTime={"7:00:00"}
+          scrollTime={"8:00:00"}
+          allDaySlot={false}
+        />
       </div>
     );
   }
