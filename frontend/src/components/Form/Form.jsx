@@ -16,8 +16,8 @@ export default class QueryForm extends Component {
             <Form.Label>Building Code</Form.Label>
             <Form.Control as="select" onChange={this.selectBuilding}>
               {
-                this.state.buildings.map(building => {
-                  return (<option key={building.code}>{building.code}</option>);
+                this.state.buildings.map(b => {
+                  return (<option key={b.building}>{b.building}</option>);
                 })
               }
             </Form.Control>
@@ -57,7 +57,7 @@ export default class QueryForm extends Component {
 
   refreshRooms = building => {
     let { state } = this;
-    state.rooms = state.buildings.find(b => b.code === building).rooms;
+    state.rooms = state.buildings.find(b => b.building === building).rooms;
   }
 
 }
