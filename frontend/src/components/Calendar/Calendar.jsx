@@ -20,7 +20,10 @@ export default class Calendar extends Component {
     return (
       <div className="calendar">
         <FullCalendar
+          plugins={[dayGridPlugin, timeGridPlugin]}
           ref={this.calendarComponentRef}
+          events={this.state.events}
+          // display
           defaultView="timeGridWeek"
           visibleRange={{
             start: '2020-06-01',
@@ -30,14 +33,12 @@ export default class Calendar extends Component {
             left: "",
             right: "timeGridWeek,timeGridDay,listWeek"
           }}
-          plugins={[dayGridPlugin, timeGridPlugin]}
           weekends={false}
-          events={this.state.events}
-          // titleFormat={{ year: 'numeric', month: '2-digit', day: '2-digit' }}
+          allDaySlot={false}
           columnHeaderFormat={{weekday: 'long'}}
           minTime={"6:00:00"}
           scrollTime={"8:00:00"}
-          allDaySlot={false}
+          // titleFormat={{ year: 'numeric', month: '2-digit', day: '2-digit' }}
         />
       </div>
     );
