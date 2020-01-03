@@ -1,4 +1,4 @@
-.search {
+.nearby {
   display: flex;
   /* text-align: center; */
 }
@@ -6,4 +6,9 @@
 .queryform {
   margin: 40px;
   flex-basis: 25%;
+}
+
+.results {
+  margin: 10px;
+  flex-basis: 60%;
 }

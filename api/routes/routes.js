@@ -12,10 +12,10 @@ module.exports = function(app, db) {
   app.get('/api/buildings', (req, res) => {
     res.send(buildings);
   })
-  app.get('/api/building/:building', (req, res) => {
+  app.get('/api/building/:building/rooms', (req, res) => {
     const b = buildings.find(b => b.building === req.params.building);
     if (!b) res.status(404).send('dne');
-    res.send(b);
+    res.send(b.rooms);
   })
   app.get('/api/building/:building/:room/courses', async (req, res) => {
     const b = buildings.find(b => b.building === req.params.building);
