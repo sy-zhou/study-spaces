@@ -17,6 +17,7 @@ export default class Search extends Component {
     return (
       <div className="search">
         <Form
+          className="queryform"
           selectBuilding={this.selectBuilding}
           selectRoom={this.selectRoom}
           submit={this.showCalendar}
@@ -29,14 +30,14 @@ export default class Search extends Component {
     );
   }
 
-  selectBuilding = e => {
+  selectBuilding = b => {
     this.setState({ showCalendar: false });
-    this.setState({ building: e.target.value });
+    this.setState({ building: b });
   }
 
-  selectRoom = e => {
+  selectRoom = r => {
     this.setState({ showCalendar: false });
-    this.setState({ room: e.target.value });
+    this.setState({ room: r });
   }
 
   showCalendar = () => {

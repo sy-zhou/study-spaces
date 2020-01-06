@@ -18,6 +18,7 @@ export default class Nearby extends Component {
     return (
       <div className="nearby">
         <Form
+          className="queryform"
           selectBuilding={this.selectBuilding}
           selectRoom={this.selectRoom}
           submit={this.findEmptyRooms}
@@ -35,7 +36,7 @@ export default class Nearby extends Component {
             {
               this.state.emptyRooms.map(room => {
                 return (
-                  <tr>
+                  <tr key={room.room}>
                     <td>{room.room}</td>
                     <td>Available until {room.time || "closing"}</td>
                   </tr>
@@ -48,14 +49,14 @@ export default class Nearby extends Component {
     );
   }
 
-  selectBuilding = e => {
+  selectBuilding = b => {
     this.setState({ showNearby: false });
-    this.setState({ building: e.target.value });
+    this.setState({ building: b });
   }
 
-  selectRoom = e => {
+  selectRoom = r => {
     this.setState({ showNearby: false });
-    this.setState({ room: e.target.value });
+    this.setState({ room: r });
   }
 
   findEmptyRooms = async () => {

@@ -10,7 +10,7 @@ export default class QueryForm extends Component {
 
   render() {
     return (
-      <div className="queryform">
+      <div className={this.props.className}>
         <Form>
           <Form.Group controlId="form.building">
             <Form.Label>Building Code</Form.Label>
@@ -24,7 +24,7 @@ export default class QueryForm extends Component {
           </Form.Group>
           <Form.Group controlId="form.room">
             <Form.Label>Room Number</Form.Label>
-            <Form.Control as="select" onChange={this.props.selectRoom}>
+            <Form.Control as="select" onChange={this.selectRoom}>
               <option></option>
               {
                 this.state.rooms.map(room => {
@@ -34,7 +34,9 @@ export default class QueryForm extends Component {
             </Form.Control>
           </Form.Group>
         </Form>
-        <Button type="submit" onClick={this.props.submit}>{this.props.buttonText || "Search"}</Button>
+        <Button type="submit" onClick={this.props.submit}>
+          {this.props.buttonText || "Search"}
+        </Button>
       </div>
     );
   }
@@ -46,18 +48,29 @@ export default class QueryForm extends Component {
   callAPI() {
     fetch("http://localhost:8000/api/buildings")
     .then(res => res.json())
-    .then(res => this.setState({ buildings: res }))
+    .then(res => {
+      this.setState({ buildings: res }, () => {
+        // manually trigger selectBuilding event handler
+        const b = this.state.buildings[0].building;
+        this.props.selectBuilding(b);
+        this.refreshRooms(b);
+      })
+    })
     .catch(err => err);
   }
 
-  selectBuilding = (e) => {
-    this.props.selectBuilding(e);
+  selectBuilding = e => {
+    this.props.selectBuilding(e.target.value);
     this.refreshRooms(e.target.value);
   }
 
+  selectRoom = e => {
+    this.props.selectRoom(e.target.value);
+  }
+
   refreshRooms = building => {
-    let { state } = this;
-    state.rooms = state.buildings.find(b => b.building === building).rooms;
+    let { buildings } = this.state;
+    this.setState({ rooms: buildings.find(b => b.building === building).rooms});
   }
 
 }
