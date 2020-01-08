@@ -26,10 +26,12 @@ export default class Search extends Component {
           submit={this.showCalendar}
         />
 
-        <Route
-          path='/:building/:room'
-          render={(props) => <Calendar {...props} refreshCalendar={this.state.showCalendar}/>}
-        />
+        <div className="calendar">
+          <Route
+            path='/:building/:room'
+            render={(props) => <Calendar {...props} refreshCalendar={this.state.showCalendar}/>}
+          />
+        </div>
       </div>
     );
   }

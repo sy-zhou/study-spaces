@@ -6,8 +6,6 @@ import "@fullcalendar/core/main.css";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 
-import './Calendar.css';
-
 export default class Calendar extends Component {
   calendarComponentRef = React.createRef();
 
@@ -18,30 +16,28 @@ export default class Calendar extends Component {
 
   render() {
     return (
-      <div className="calendar">
-        <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin]}
-          ref={this.calendarComponentRef}
-          events={this.state.events}
-          // display
-          defaultView="timeGridWeek"
-          visibleRange={{
-            start: '2020-06-01',
-            end: '2020-06-05'
-          }}
-          header={{
-            left: "",
-            // right: "timeGridWeek,timeGridDay,listWeek"
-            right: ""
-          }}
-          weekends={false}
-          allDaySlot={false}
-          columnHeaderFormat={{weekday: 'long'}}
-          minTime={"6:00:00"}
-          scrollTime={"8:00:00"}
-          // titleFormat={{ year: 'numeric', month: '2-digit', day: '2-digit' }}
-        />
-      </div>
+      <FullCalendar
+        plugins={[dayGridPlugin, timeGridPlugin]}
+        ref={this.calendarComponentRef}
+        events={this.state.events}
+        // display
+        defaultView="timeGridWeek"
+        visibleRange={{
+          start: '2020-06-01',
+          end: '2020-06-05'
+        }}
+        header={{
+          left: "",
+          // right: "timeGridWeek,timeGridDay,listWeek"
+          right: ""
+        }}
+        weekends={false}
+        allDaySlot={false}
+        columnHeaderFormat={{weekday: 'long'}}
+        minTime={"6:00:00"}
+        scrollTime={"8:00:00"}
+        // titleFormat={{ year: 'numeric', month: '2-digit', day: '2-digit' }}
+      />
     );
   }
 
