@@ -31,7 +31,8 @@ export default class Calendar extends Component {
           }}
           header={{
             left: "",
-            right: "timeGridWeek,timeGridDay,listWeek"
+            // right: "timeGridWeek,timeGridDay,listWeek"
+            right: ""
           }}
           weekends={false}
           allDaySlot={false}
@@ -75,8 +76,8 @@ export default class Calendar extends Component {
     this.setState({ events: temp });
   }
 
-  componentDidMount() {
-    const { building, room } = this.props;
+  displayCalendar() {
+    const { building, room } = this.props.match.params;
     // call API
     fetch(`http://localhost:8000/api/building/${building}/${room}/courses`)
       .then(res => res.json())
@@ -87,4 +88,13 @@ export default class Calendar extends Component {
     calendarApi.gotoDate("2020-06-01");
   }
 
+  componentDidMount() {
+    this.displayCalendar();
+  }
+  
+  componentDidUpdate(prevProps) {
+    if (this.props.refreshCalendar && prevProps.refreshCalendar != this.props.refreshCalendar) {
+      this.displayCalendar();
+    }
+  }
 }

@@ -12,12 +12,13 @@ class App extends Component {
       <div className="App">
         <Navbar bg="light" variant="light">
           <Nav className="mr-auto">
-            <Nav.Link href="/">Search any Room</Nav.Link>
+            <Nav.Link href="/">Search Any Room</Nav.Link>
             <Nav.Link href="/nearby">Find Open Rooms Nearby</Nav.Link>
           </Nav>
         </Navbar>
         <Switch>
           <Route path='/nearby' component={Nearby} />
+          <Route path='/:building/:room' component={Search} />
           <Route path='/' component={Search} />
         </Switch>
       </div>
