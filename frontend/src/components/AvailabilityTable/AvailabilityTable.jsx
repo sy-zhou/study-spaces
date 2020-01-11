@@ -63,7 +63,6 @@ export default class AvailabilityTable extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     this.findEmptyRooms();
   }
 

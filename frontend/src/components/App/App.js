@@ -18,9 +18,9 @@ class App extends Component {
         </Navbar>
         <Switch>
           <Route path='/nearby/:building/:room' component={Nearby} />
-          <Route path='/nearby' component={Nearby} />
+          <Route exact path='/nearby' component={Nearby} />
           <Route path='/:building/:room' component={Search} />
-          <Route path='/' component={Search} />
+          <Route exact path='/' component={Search} />
         </Switch>
       </div>
     );

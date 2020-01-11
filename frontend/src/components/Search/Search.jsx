@@ -19,6 +19,7 @@ export default class Search extends Component {
       <div className="search">
         <Form
           className="queryform"
+          key={`${this.props.match.params.building}${this.props.match.params.room}`}
           defaultBuilding={this.state.building}
           defaultRoom={this.state.room}
           selectBuilding={this.selectBuilding}
@@ -29,7 +30,15 @@ export default class Search extends Component {
         <div className="calendar">
           <Route
             path='/:building/:room'
-            render={(props) => <Calendar {...props} refreshCalendar={this.state.showCalendar}/>}
+            render={(props) => {
+              return (
+                <Calendar
+                  key={`${this.props.match.params.building}${this.props.match.params.room}`}
+                  refreshCalendar={this.state.showCalendar}
+                  {...props}
+                />
+              );
+            }}
           />
         </div>
       </div>
@@ -49,5 +58,16 @@ export default class Search extends Component {
   showCalendar = () => {
     this.setState({ showCalendar: true });
     this.props.history.push(`/${this.state.building}/${this.state.room}`);
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevParams = prevProps.match.params;
+    const currParams = this.props.match.params;
+    if (currParams.building != prevParams.building || currParams.room != prevParams.room) {
+      this.setState({
+        building: this.props.match.params.building,
+        room: this.props.match.params.room
+      });
+    }
   }
 }

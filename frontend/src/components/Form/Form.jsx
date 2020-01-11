@@ -72,5 +72,4 @@ export default class QueryForm extends Component {
     let { buildings } = this.state;
     this.setState({ rooms: buildings.find(b => b.building === building).rooms});
   }
-
 }
