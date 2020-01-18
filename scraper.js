@@ -41,7 +41,7 @@ const getData = async () => {
     // make array orderly and pretty
     arr.sort((a,b) => (a.building > b.building) ? 1 : ((b.building > a.building) ? -1 : 0));
     arr.forEach(b => b.rooms.sort());
-    fs.writeFile("./database/buildings.json", JSON.stringify(arr, null, 2), () => {});
+    fs.writeFile("./buildings.json", JSON.stringify(arr, null, 2), () => {});
   } catch (e) {
     console.log(e);
   }
