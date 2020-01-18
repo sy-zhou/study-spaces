@@ -75,7 +75,7 @@ export default class Calendar extends Component {
   displayCalendar() {
     const { building, room } = this.props.match.params;
     // call API
-    fetch(`http://localhost:8000/api/building/${building}/${room}/courses`)
+    fetch(`/api/building/${building}/${room}/courses`)
       .then(res => res.json())
       .then(res => this.setState({ times: res }, () => this.formatTimes()))
       .catch(err => err);

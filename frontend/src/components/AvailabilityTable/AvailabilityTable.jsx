@@ -34,11 +34,11 @@ export default class AvailabilityTable extends Component {
   findEmptyRooms = async () => {
     const { building, room } = this.props.match.params;
     let emptyRooms = [];
-    let possibleRooms = await fetch(`http://localhost:8000/api/building/${building}/rooms`)
+    let possibleRooms = await fetch(`/api/building/${building}/rooms`)
       .then(res => res.json());
     const numRooms = possibleRooms.length;
     for (let i = 0; i < numRooms; ++i) {
-      let roomSchedule = await fetch(`http://localhost:8000/api/building/${building}/${possibleRooms[i]}/courses`)
+      let roomSchedule = await fetch(`/api/building/${building}/${possibleRooms[i]}/courses`)
       .then(res => res.json());
       // TODO: make less messy
       const date = new Date();
