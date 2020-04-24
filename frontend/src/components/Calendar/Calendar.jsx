@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Media from 'react-media';
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -16,28 +17,34 @@ export default class Calendar extends Component {
 
   render() {
     return (
-      <FullCalendar
-        plugins={[dayGridPlugin, timeGridPlugin]}
-        ref={this.calendarComponentRef}
-        events={this.state.events}
-        // display
-        defaultView="timeGridWeek"
-        visibleRange={{
-          start: '2020-06-01',
-          end: '2020-06-05'
-        }}
-        header={{
-          left: "",
-          // right: "timeGridWeek,timeGridDay,listWeek"
-          right: ""
-        }}
-        weekends={false}
-        allDaySlot={false}
-        columnHeaderFormat={{weekday: 'long'}}
-        minTime={"6:00:00"}
-        scrollTime={"8:00:00"}
-        // titleFormat={{ year: 'numeric', month: '2-digit', day: '2-digit' }}
-      />
+      <Media queries={{
+        mobile: "(max-width: 1023px)",
+        desktop: "(min-width: 1024px)"
+      }}>
+        {matches => (
+          <FullCalendar
+            plugins={[dayGridPlugin, timeGridPlugin]}
+            ref={this.calendarComponentRef}
+            events={this.state.events}
+            // display
+            aspectRatio={matches.mobile ? 0.9 : 1.35}
+            defaultView="timeGridWeek"
+            visibleRange={{
+              start: '2020-06-01',
+              end: '2020-06-05'
+            }}
+            header={{
+              left: "",
+              right: ""
+            }}
+            weekends={false}
+            allDaySlot={false}
+            columnHeaderFormat={{weekday: matches.mobile ? 'short' : 'long'}}
+            minTime={"6:00:00"}
+            scrollTime={"8:00:00"}
+          />
+        )}
+      </Media>
     );
   }
 

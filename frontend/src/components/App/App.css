@@ -1,4 +1,5 @@
-/* .App { */
-  /* display: flex; */
-  /* text-align: center; */
-/* } */
+@media screen and (max-width: 1024px) {
+  a, label {
+    font-size: 13px;
+  }
+}

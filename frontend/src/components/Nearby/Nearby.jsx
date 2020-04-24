@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Form from '../Form/Form';
 import AvailabilityTable from '../AvailabilityTable/AvailabilityTable';
-
 import './Nearby.css';
 
 export default class Nearby extends Component {
@@ -10,7 +9,6 @@ export default class Nearby extends Component {
     super(props);
     this.state = {
       building: props.match.params.building,
-      room: props.match.params.room,
       emptyRooms: [],
       showNearby: false
     };
@@ -21,7 +19,7 @@ export default class Nearby extends Component {
       <div className="nearby">
         <Form
           className="queryform"
-          key={`${this.props.match.params.building}${this.props.match.params.room}`}
+          key={`${this.props.match.params.building}`}
           defaultBuilding={this.state.building}
           selectBuilding={this.selectBuilding}
           showRoomField={false}
@@ -31,11 +29,11 @@ export default class Nearby extends Component {
 
         <div className="results">
           <Route
-            path='/nearby/:building/:room'
+            path='/nearby/:building'
             render={(props) => {
               return (
                 <AvailabilityTable
-                  key={`${this.props.match.params.building}${this.props.match.params.room}`}
+                  key={`${this.props.match.params.building}`}
                   refreshTable={this.state.showNearby}
                   {...props}
                 />
@@ -59,16 +57,15 @@ export default class Nearby extends Component {
 
   showAvailabilityTable = () => {
     this.setState({ showNearby: true });
-    this.props.history.push(`/nearby/${this.state.building}/${this.state.room}`);
+    this.props.history.push(`/nearby/${this.state.building}`);
   }
 
   componentDidUpdate(prevProps) {
     const prevParams = prevProps.match.params;
     const currParams = this.props.match.params;
-    if (currParams.building != prevParams.building || currParams.room != prevParams.room) {
+    if (currParams.building != prevParams.building) {
       this.setState({
-        building: this.props.match.params.building,
-        room: this.props.match.params.room
+        building: this.props.match.params.building
       });
     }
   }
