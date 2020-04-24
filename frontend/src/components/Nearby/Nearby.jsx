@@ -23,9 +23,8 @@ export default class Nearby extends Component {
           className="queryform"
           key={`${this.props.match.params.building}${this.props.match.params.room}`}
           defaultBuilding={this.state.building}
-          defaultRoom={this.state.room}
           selectBuilding={this.selectBuilding}
-          selectRoom={this.selectRoom}
+          showRoomField={false}
           submit={this.showAvailabilityTable}
           buttonText={"Find Nearby"}
         />

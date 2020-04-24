@@ -32,7 +32,7 @@ export default class AvailabilityTable extends Component {
   }
 
   findEmptyRooms = async () => {
-    const { building, room } = this.props.match.params;
+    const { building } = this.props.match.params;
     let emptyRooms = [];
     let possibleRooms = await fetch(`http://localhost:8000/api/building/${building}/rooms`)
       .then(res => res.json());

@@ -21,8 +21,9 @@ export default class Search extends Component {
           className="queryform"
           key={`${this.props.match.params.building}${this.props.match.params.room}`}
           defaultBuilding={this.state.building}
-          defaultRoom={this.state.room}
           selectBuilding={this.selectBuilding}
+          showRoomField={true}
+          defaultRoom={this.state.room}
           selectRoom={this.selectRoom}
           submit={this.showCalendar}
         />

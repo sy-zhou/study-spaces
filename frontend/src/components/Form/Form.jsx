@@ -22,17 +22,19 @@ export default class QueryForm extends Component {
               }
             </Form.Control>
           </Form.Group>
-          <Form.Group controlId="form.room">
-            <Form.Label>Room Number</Form.Label>
-            <Form.Control as="select" onChange={this.selectRoom} value={this.props.defaultRoom}>
-              <option></option>
-              {
-                this.state.rooms.map(room => {
-                  return (<option key={room} value={room}>{room}</option>);
-                })
-              }
-            </Form.Control>
-          </Form.Group>
+          {this.props.showRoomField && (
+            <Form.Group controlId="form.room">
+              <Form.Label>Room Number</Form.Label>
+              <Form.Control as="select" onChange={this.selectRoom} value={this.props.defaultRoom}>
+                <option></option>
+                {
+                  this.state.rooms.map(room => {
+                    return (<option key={room} value={room}>{room}</option>);
+                  })
+                }
+              </Form.Control>
+            </Form.Group>
+          )}
         </Form>
         <Button type="submit" onClick={this.props.submit}>
           {this.props.buttonText || "Search"}
