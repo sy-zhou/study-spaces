@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const buildings = require('../buildings.json');
+const buildings = require('../database/buildings.json');
 const API_KEY = require('../api_key.json');
 
 const getData = url => {

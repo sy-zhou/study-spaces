@@ -46,7 +46,7 @@ export default class QueryForm extends Component {
   }
 
   callAPI() {
-    fetch("/api/buildings")
+    fetch("http://localhost:8000/api/buildings")
     .then(res => res.json())
     .then(res => {
       this.setState({ buildings: res }, () => {
